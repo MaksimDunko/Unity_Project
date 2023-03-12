@@ -22,24 +22,27 @@ public class Raycast : MonoBehaviour
             if (_hit.collider.gameObject.tag == "Pick" && Input.GetKey(KeyCode.E)) {
                 if (selected == null)
                 {
-                    _hit.collider.gameObject.transform.position = arm.transform.position;
-                    _hit.collider.gameObject.transform.rotation = arm.transform.rotation;
-                    _hit.collider.gameObject.transform.SetParent(arm);
-                    _hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                     selected = _hit.collider.gameObject;
+                    selected.transform.position = arm.transform.position;
+                    selected.transform.rotation = arm.transform.rotation;
+                    selected.GetComponent<Collider>().enabled = false;
+                    selected.transform.SetParent(arm);
+                    selected.GetComponent<Rigidbody>().isKinematic = true;
+                    
                 }
                 else {
                     print("LOX");
-                    selected.transform.parent = null;
                     selected.transform.GetComponent<Rigidbody>().isKinematic = false;
                     selected.transform.GetComponent<Rigidbody>().AddForce(Vector3.left * 100);
+                    selected.GetComponent<Collider>().enabled = true;
                     selected = null;
 
-                    _hit.collider.gameObject.transform.position = arm.transform.position;
-                    _hit.collider.gameObject.transform.rotation = arm.transform.rotation;
-                    _hit.collider.gameObject.transform.SetParent(arm);
-                    _hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                     selected = _hit.collider.gameObject;
+                    selected.transform.position = arm.transform.position;
+                    selected.transform.rotation = arm.transform.rotation;
+                    selected.transform.SetParent(arm);
+                    selected.GetComponent<Rigidbody>().isKinematic = true;
+                    selected.GetComponent<Collider>().enabled = false;
                 }
             }
         }
