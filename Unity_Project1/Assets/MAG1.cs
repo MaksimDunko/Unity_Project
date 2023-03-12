@@ -50,7 +50,7 @@ public class MAG1 : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.Alpha1))
             {
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(3);
             }
             yield return new WaitForSeconds(0.01f);
         }
